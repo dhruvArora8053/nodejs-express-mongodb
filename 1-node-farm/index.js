@@ -6,7 +6,7 @@ console.log(hello);
 // //so by using this module here we will get access to functions for reading data and writing data right to the file system so again calling this function here with this built-in fs module name will then return an object in which there are lots of functions that we can use and we storr that object right into the fs variable that we can then later use
 // ///////////////////////////////////////////////////////////////////////////////
 // //5-reading and writing files:-
-
+ 
 // //reading file
 // const textIn = fs.readFileSync("./txt/input.txt", "utf-8");
 // //calling this funciton here will now read the data from the file and return it to us
