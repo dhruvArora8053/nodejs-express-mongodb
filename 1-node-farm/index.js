@@ -1,5 +1,5 @@
 const hello = "Hello world";
-console.log(hello);
+console.log(hello); 
 
 //Node.js is really built around this concept of modules where all kind of additional functionality is stored in a module and in the case of reading files that is inside the FS module:
 const fs = require("fs"); //fs --> file system
