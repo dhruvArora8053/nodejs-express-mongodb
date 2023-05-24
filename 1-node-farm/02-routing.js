@@ -21,7 +21,7 @@ const server = http.createServer((req, res) => {
       "Content-type": "text/html", //now browser is expection some html
       "my-own-header": "hello-world",
     });
-    //now what matter here is that these headers and also the status code always need to be set before we send out the response so we can never send header after the response content itself
+    //these headers and also the status code always need to be set before we send out the response 
     res.end("<h1>Page not found!</h1>");
   }
 });
