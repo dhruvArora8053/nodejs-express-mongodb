@@ -1,7 +1,6 @@
 //series
 const fs = require("fs");
 const http = require("http");
-// const { json } = require("stream/consumers");
 const url = require("url");
 
 const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, "utf-8");
