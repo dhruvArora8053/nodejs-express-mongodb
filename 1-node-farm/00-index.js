@@ -30,7 +30,7 @@ fs.readFile("./txt/start.txt", "utf-8", (err, data) => {
 console.log("Will read file");
 //here as you see 'Will read file' got printed before 'read-this'
 
-//dependent code:
+//dependent code(callback-hell):
 fs.readFile("./txt/start.txt", "utf-8", (err, data1) => {
   if (err) return console.log("ERROR! 💥");
   //by using return keyword, rest of the code will not be executed
