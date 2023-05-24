@@ -1,8 +1,15 @@
+//series
 const fs = require("fs");
 const http = require("http");
 // const { json } = require("stream/consumers");
 const url = require("url");
 
+const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, "utf-8");
+const dataObj = JSON.parse(data);
+//here we are using the sync version at top of the script because this code going to execute only once, and we can put this data inside of a variable right away
+//Note:- find which code is going to execute only once, and which going to execute over and over again(which could be blocking)
+
+//2.
 const server = http.createServer((req, res) => {
   console.log(req.url);
 
@@ -12,18 +19,22 @@ const server = http.createServer((req, res) => {
     res.end("This is the OVERVIEW");
   } else if (pathName === "/product") {
     res.end("This is the PRODUCT");
-  } //from here
+  } //from here 1.
   else if (pathName === "/api") {
     // fs.readFile('./dev-data/data.json')
     //here '.' means: the current directory where we are running the node/script, and if we are running the node on the desktop then '.' will simply point to the desktop but it could create a confusion so to solve this:
 
-    fs.readFile(`${__dirname}/dev-data/data.json`, "utf-8", (err, data) => {
-      const productData = JSON.parse(data); //JSON.parse will convert the data into an array object
-      console.log(productData);
-    });
-    //__dirname: current file location
+    // fs.readFile(`${__dirname}/dev-data/data.json`, "utf-8", (err, data) => {
+    //   //__dirname: current file location
+    //   const productData = JSON.parse(data); //JSON.parse will convert the data into an array object
+    //   console.log(productData);
 
-    res.end("API");
+    //   res.writeHead(200, { "Content-type": "application/json" });
+    //   res.end(data);
+    //   // now the problem here is everytime we request the data, the above file will be read again and again so to solve this: we are using sync version at top of the code
+    // });
+    res.writeHead(200, { "Content-type": "application/json" });
+    res.end(data);
   }
 
   //fallback
