@@ -2,21 +2,18 @@ const fs = require("fs");
 const http = require("http");
 const url = require("url");
 
-const replaceTemplate = (template, product) => {
-  let output = template.replaceAll("{%PRODUCTNAME%}", product.productName);
-  output = output.replaceAll("{IMAGE}", product.image);
-  output = output.replaceAll("{PRICE}", product.price);
-  output = output.replaceAll("{FROM}", product.from);
-  output = output.replaceAll("{NUTRIENTS}", product.nutrients);
-  output = output.replaceAll("{QUANTITY}", product.quantity);
-  output = output.replaceAll("{DESCRIPTION}", product.description);
-  output = output.replaceAll("{ID}", product.id);
-  
+const replaceTemplate = (temp, product) => {
+  let output = temp.replaceAll("{%PRODUCTNAME%}", product.productName);
+  output = output.replaceAll("{%IMAGE%}", product.image);
+  output = output.replaceAll("{%PRICE%}", product.price);
+  output = output.replaceAll("{%FROM%}", product.from);
+  output = output.replaceAll("{%NUTRIENTS%}", product.nutrients);
+  output = output.replaceAll("{%QUANTITY%}", product.quantity);
+  output = output.replaceAll("{%DESCRIPTION%}", product.description);
+  output = output.replaceAll("{%ID%}", product.id);
 
   if (!product.organic)
-    output = output.replaceAll("{NOT_ORGANIC}", "not-organic");
-
-  return output;
+    output = output.replaceAll("{%NOT_ORGANIC%}", "not-organic");
 };
 
 const tempOverview = fs.readFileSync(
@@ -34,36 +31,31 @@ const tempProduct = fs.readFileSync(
 
 const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, "utf-8");
 const dataObj = JSON.parse(data);
-//again dataObj is an array at this point of time with five objects in it, so now what we have to do is to basically loop through this array and for each of them replace the placeholders in the template with the actual data from the current product: inside of server
 
 const server = http.createServer((req, res) => {
   console.log(req.url);
 
   const pathName = req.url;
 
-  //Overview Page
+  //Overview page
   if (pathName === "/" || pathName === "/overview") {
     res.writeHead(200, { "Content-type": "text/html" });
+    const cardsHtml = dataObj.map((el) => replaceTemplate(tempCard, el));
 
-    const cardsHtml = dataObj
-      .map((el) => replaceTemplate(tempCard, el))
-      .join("");
-    // console.log(cardsHtml);
-    const output = tempOverview.replace("{%PRODUCT_CARDS%}", cardsHtml);
+    res.end(tempOverview);
 
-    // res.end(tempOverview);
-    res.end(output);
-
-    //Product Page
+    //Product page
   } else if (pathName === "/product") {
     res.end("This is the PRODUCT");
 
-    // API
+    //API
   } else if (pathName === "/api") {
+    res.writeHead(200, { "Content-type": "application/json" });
     res.end(data);
+  }
 
-    // Not Found
-  } else {
+  //Not found
+  else {
     res.writeHead(404, {
       "Content-type": "text/html",
       "my-own-header": "hello-world",
@@ -76,6 +68,3 @@ const server = http.createServer((req, res) => {
 server.listen(8000, "127.0.0.1", () => {
   console.log("Listening to requests on port 8000");
 });
-
-
-
