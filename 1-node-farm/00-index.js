@@ -26,7 +26,7 @@ console.log("File Written!");
 fs.readFile("./txt/start.txt", "utf-8", (err, data) => {
   console.log(data);
 });
-//as soons as the readFile fucntion is run, it will start reading ./txt/start.txt file in the background without blocking the rest of the code execution:
+//as soon as the readFile fucntion is run, it will start reading ./txt/start.txt file in the background without blocking the rest of the code execution:
 console.log("Will read file");
 //here as you see 'Will read file' got printed before 'read-this'
 
@@ -46,3 +46,4 @@ fs.readFile("./txt/start.txt", "utf-8", (err, data1) => {
     });
   });
 });
+
