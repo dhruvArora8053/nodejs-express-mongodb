@@ -18,7 +18,7 @@ const server = http.createServer((req, res) => {
     res.writeHead(404, {
       //sending headers
       //an http header is basically a piece of information about the response that we are sending back:
-      "Content-type": "text/html", //now browser is expection some html
+      "Content-type": "text/html", //now browser is expecting some html
       "my-own-header": "hello-world",
     });
     //these headers and also the status code always need to be set before we send out the response 

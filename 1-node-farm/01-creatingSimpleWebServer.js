@@ -2,7 +2,7 @@ const http = require("http");
 //built-in http module gives us networking capabilites such as building an http server
 
 const server = http.createServer((req, res) => {
-  //   console.log(req);
+    // console.log(req);
   res.end("Hello from the server!");
   // this is the response that we are going to send back
 });
