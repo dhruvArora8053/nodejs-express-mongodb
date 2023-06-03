@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      .container {
+        font-size: 40px;
+        width: 800px;
+        height: 800px;
+        margin: 200px auto;
+        color: white;
+
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 150px;
+        grid-template-rows: 100px 150px 1fr 100px;
+        gap: 15px;
+      }
+
+      .item {
+        background-color: red;
+      }
+
+      .item-1 {
+        grid-column: 1/-1;
+      }
+
+      .item-6 {
+        grid-column: 1 / span 3;
+      }
+
+      /* .item-5{
+        grid-row: 2/ span 2;
+      } */
+
+      .item-7 {
+        grid-column: 1/-1;
+      }
+
+      .item-4 {
+        grid-column: 4/5;
+        grid-row: 2/4;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="item item-1">Header</div>
+      <div class="item item-2">Small box 1</div>
+      <div class="item item-3">Small box 2</div>
+      <div class="item item-4">Sidebar</div>
+      <div class="item item-5">Small box 3</div>
+      <div class="item item-6">Main content</div>
+      <div class="item item-7">Footer</div>
+    </div>
+  </body>
+</html>
