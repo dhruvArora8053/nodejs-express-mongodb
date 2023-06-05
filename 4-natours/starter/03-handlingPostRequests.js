@@ -36,17 +36,22 @@ app.post('/api/v1/tours', (req, res) => {
   //   console.log(newTour);
 
   tours.push(newTour);
+
   fs.writeFile(
     `${__dirname}/dev-data/data/tours-simple.json`,
     JSON.stringify(tours),
     (err) => {
-        res.status(201).json({     //201: created
-            status: 'success', 
-        })     
+      res.status(201).json({
+        //201: created
+        status: 'success',
+        data: {
+          tour: newTour, 
+        },
+      });
     }
   );
 
-  res.send('Done');
+//   res.send('Done');
 });
 
 const port = 3000;
