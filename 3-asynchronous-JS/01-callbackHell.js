@@ -1,6 +1,7 @@
 const fs = require("fs");
 const superagent = require("superagent");
 
+//callback hell
 fs.readFile(`${__dirname}/dog.txt`, (err, data) => {
   console.log(`Breed: ${data}`);
 
@@ -15,3 +16,5 @@ fs.readFile(`${__dirname}/dog.txt`, (err, data) => {
       });
     });
 });
+
+
