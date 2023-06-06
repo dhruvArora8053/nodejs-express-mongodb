@@ -41,14 +41,21 @@ app.get('/api/v1/tours/:id', (req, res) => {
   //req.params is where all the parameters of all the variables are stored
 
   //getting the tour:
+  //   if (+req.params.id > tours.length) {
+  //     return res.status(404).json({ status: 'fail', message: 'Invalid ID' });
+  //   }
+
   const tour = tours.find((el) => el.id === +req.params.id);
+  
+  if (!tour) {
+    return res.status(404).json({ status: 'fail', message: 'Invalid ID' });
+  }
 
   res.status(200).json({
     status: 'success',
-    // results: tours.length,
-    // data: {
-    //   tours,
-    // },
+    data: {
+      tour,
+    },
   });
 });
 
