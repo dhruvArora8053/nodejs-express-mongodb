@@ -22,20 +22,6 @@ app.get('/api/v1/tours', (req, res) => {
   });
 });
 
-//FROM HERE:-
-// app.get('/api/v1/tours/:id/:x/:y?', (req, res) => {
-//     console.log(req.params);
-// //req.params is where all the parameters of all the variables are stored
-
-//   res.status(200).json({
-//     status: 'success',
-//     // results: tours.length,
-//     // data: {
-//     //   tours,
-//     // },
-//   });
-// });
-
 app.get('/api/v1/tours/:id', (req, res) => {
   console.log(req.params.id);
   //req.params is where all the parameters of all the variables are stored
@@ -48,7 +34,10 @@ app.get('/api/v1/tours/:id', (req, res) => {
   const tour = tours.find((el) => el.id === +req.params.id);
 
   if (!tour) {
-    return res.status(404).json({ status: 'fail', message: 'Invalid ID' });
+    return res.status(404).json({
+      status: 'fail',
+      message: 'Invalid ID',
+    });
   }
 
   res.status(200).json({
@@ -85,6 +74,24 @@ app.post('/api/v1/tours', (req, res) => {
   );
 
   //   res.send('Done');
+});
+
+//FROM HERE:-
+//we have two http methods to update data, we have put and patch and with put we expect that our application recieves the entire new updated object and with patch we only expect the properties that should actually be updated on the object:
+app.patch('/api/v1/tours/:id', (req, res) => {
+  if (+req.params.id > tours.length) {
+    return res.status(404).json({
+      status: 'fail',
+      message: 'Invalid ID',
+    });
+  }
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      tour: '<Updated tour here...>',
+    },
+  });
 });
 
 const port = 3000;
