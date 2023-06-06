@@ -23,8 +23,34 @@ app.get('/api/v1/tours', (req, res) => {
 });
 
 //FROM HERE↑:-
-//.get: to get all the tours
-//.post: to create a new tour
+// app.get('/api/v1/tours/:id/:x/:y?', (req, res) => {
+//     console.log(req.params);
+// //req.params is where all the parameters of all the variables are stored
+
+//   res.status(200).json({
+//     status: 'success',
+//     // results: tours.length,
+//     // data: {
+//     //   tours,
+//     // },
+//   });
+// });
+
+app.get('/api/v1/tours/:id', (req, res) => {
+  console.log(req.params.id);
+  //req.params is where all the parameters of all the variables are stored
+
+  //getting the tour:
+  const tour = tours.find((el) => el.id === +req.params.id);
+
+  res.status(200).json({
+    status: 'success',
+    // results: tours.length,
+    // data: {
+    //   tours,
+    // },
+  });
+});
 
 app.post('/api/v1/tours', (req, res) => {
   //req object holds all the data about the reques that was done
@@ -45,13 +71,13 @@ app.post('/api/v1/tours', (req, res) => {
         //201: created
         status: 'success',
         data: {
-          tour: newTour,   
+          tour: newTour,
         },
       });
     }
   );
 
-//   res.send('Done');
+  //   res.send('Done');
 });
 
 const port = 3000;
