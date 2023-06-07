@@ -1,10 +1,8 @@
 const dotenv = require('dotenv');
-dotenv.config({ path: './config.env' });
-//this command will read our variables from the file and save them into nodejs environment variables
-
 const app = require('./12-betterFileStructure');
 
-
+dotenv.config({ path: './config.env' });
+//this command will read our variables from the file and save them into nodejs environment variables
 
 //Environment Variables:
 console.log(app.get('env'));
@@ -16,3 +14,6 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`App running on port ${port}...`);
 });
+
+const x = 23;
+
