@@ -1,9 +1,10 @@
-const fs = require('fs');
 const express = require('express');
 const morgan = require('morgan');
 
-const tourRouter= require('./routes/tourRoutes')
-const userRouter= require('./routes/userRoutes')
+//FROM HERE:-
+const tourRouter = require('./routes/tourRoutes');
+const userRouter = require('./routes/userRoutes');
+//so we have our routers now each in one different file and we can say that each of them is one small sub-application so i.e. one user application and one tour application and then we put everything in our global app file by importing above routers and then mouting the routers on the two different routes 
 
 const app = express();
 
@@ -22,11 +23,10 @@ app.use((req, res, next) => {
   next();
 });
 
+//Mounting Routers:
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 
 //4.)START SERVER
-const port = 3000;
-app.listen(port, () => {
-  console.log(`App running on port ${port}...`);
-});
+module.exports= app;
+
