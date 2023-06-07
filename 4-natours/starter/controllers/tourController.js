@@ -4,6 +4,17 @@ const tours = JSON.parse(
   fs.readFileSync(`${__dirname}/../dev-data/data/tours-simple.json`)
 );
 
+//chaining middlewares:
+exports.checkBody = (req, res, next) => {
+  if (!req.body.name || !req.body.price) {
+    return res.status(400).json({
+      status: 'fail',
+      message: 'Missing name or price',
+    });
+  }
+  next(); 
+};
+
 exports.checkID = (req, res, next, value) => {
   console.log(`Tour id is: ${value}`);
   if (+req.params.id > tours.length) {
