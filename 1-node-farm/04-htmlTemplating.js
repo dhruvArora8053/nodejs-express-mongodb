@@ -22,6 +22,7 @@ const tempOverview = fs.readFileSync(
   `${__dirname}/templates/template-overview.html`,
   "utf-8"
 );
+// console.log(typeof tempOverview); //string
 const tempCard = fs.readFileSync(
   `${__dirname}/templates/template-card.html`,
   "utf-8"

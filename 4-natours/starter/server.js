@@ -21,39 +21,6 @@ mongoose
     console.log('DB connection successful!');
   });
 
-const tourSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: [true, 'A tour must have a name'],
-    unique: true,
-  },
-  rating: {
-    type: Number,
-    default: 4.5,
-  },
-  price: {
-    type: Number,
-    required: [true, 'A tour must have a price'],
-  },
-});
-const Tour = mongoose.model('Tour', tourSchema);
-
-//same like classes in javascript
-const testTour = new Tour({
-  name: 'The Park Camper',
-  price: 997,
-});
-
-//to save it into our database
-testTour
-  .save()
-  .then((doc) => {
-    console.log(doc);
-  })
-  .catch((err) => {
-    console.log('ERROR! :', err);
-  });
-
 //Environment Variables:
 console.log(app.get('env'));
 //environment variables are global variables that are used to define the environment in which a node app is running, now this 'env' variable is actually set by express but node.js itself actually also set a lot of environment variables:
